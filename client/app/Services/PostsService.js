@@ -24,7 +24,7 @@ _postApi.post("posts/", rawPostData).then(res => {
   }
 
   createCaption(rawCaptionData, postId) {
-_postApi.post("posts/" + postId, rawCaptionData).then(res => {
+_postApi.post("posts/" + postId + "/captions", rawCaptionData).then(res => {
 this.getPosts()
 }).catch(err => console.error(err))
   }
@@ -45,7 +45,7 @@ this.getPosts()
   upvoteCaption(captionId, postId) {
     let updatedScore = store.State.posts.find(c => c.caption._id == captionId)
     updatedScore.score++
-    _postApi.put("posts/" + postId + "/caption/" + captionId, updatedScore).then(res => {
+    _postApi.put("posts/" + postId + "/captions/" + captionId, updatedScore).then(res => {
       console.log(res)
       this.getPosts()
     })
@@ -55,7 +55,7 @@ this.getPosts()
   downvoteCaption(captionId, postId) {
     let updatedScore = store.State.posts.find(c => c.caption._id == captionId)
     updatedScore.score--
-    _postApi.put("posts/" + postId + "/caption/" + captionId, updatedScore).then(res => {
+    _postApi.put("posts/" + postId + "/captions/" + captionId, updatedScore).then(res => {
       console.log(res)
       this.getPosts()
     })
