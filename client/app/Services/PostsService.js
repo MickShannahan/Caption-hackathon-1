@@ -1,6 +1,8 @@
 import store from "../store.js";
+import Post from "../Models/Post.js"
 
 
+// @ts-ignore
 const _postApi = axios.create({
   baseURL: "http://localhost:3000/api/",
   timeout: 3000
@@ -9,6 +11,7 @@ const _postApi = axios.create({
 
 class PostsService {
   constructor() {
+    this.getPosts()
 
   }
 
@@ -16,8 +19,8 @@ class PostsService {
   getPosts() {
     _postApi.get("posts").then(res => {
       console.log(res.data)
-      store.commit()
-    })
+      store.commit("posts", res.data.map(rawPostData => new Post(rawPostData)))
+    }).catch(err => console.error(err))
   }
 
 
