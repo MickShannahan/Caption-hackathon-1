@@ -7,3 +7,24 @@ body {
 main {
     flex-grow: 1;
 }
+
+.h-content{
+    max-height: 89vh;
+}
+
+
+.rounded-big{
+    border-radius: 5px;
+}
+
+.post-size{
+    min-height: 40vh;
+}
+
+.btn-bottom{  
+    text-align: center;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    align-self: flex-end!important;
+}

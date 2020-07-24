@@ -6,32 +6,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js">
+    <!-- <link rel="stylesheet" href="assets/bootstrap.css"> -->
     <link rel="stylesheet" href="assets/style.css">
     <title>this.Caption</title>
+
+    <style>
+        * {
+            outline: 1px dotted rgb(248, 129, 129);
+            /* .row {
+        min-height: 10vh;
+      } */
+        }
+    </style>
+
 </head>
 
-<body>
+<body class="container-fluid p-0">
+    <header class="container-fluid p-0">
+        <nav class="navbar navbar-primary bg-primary">
+            <a class="navbar-brand text-white" href="#">this.Caption</a>
+        </nav>
 
-    <header class="container-fluid">
-        <nav class="row">
-            <div class="col-12">
+
+        <!-- Modal -->
+        <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header  bg-secondary">
+                        <h5 id="createPostModalLabel" class="modal-title text-light">Create a Post</h5>
+                        <button type="button" class="close text-light" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group" onsubmit="app.postsController.createPost(event)">
+                            <input type="text" name="username" id="" class="form-control my-1"
+                                placeholder="enter your name...">
+                            <input type="text" name="title" id="" class="form-control my-1"
+                                placeholder="enter the title...">
+                            <input type="text" name="imgUrl" id="" class="form-control my-1"
+                                placeholder="url of the image...">
+                            <input type="text" name="caption" id="" class="form-control my-1"
+                                placeholder="enter your caption...">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">POST IT!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="container-fluid bg-light px-4">
+        <div class="row p-4 justify-content-around">
+            <div id="posts" class="col-8 overflow-auto h-content px-3 ">
+                <!-- POST TEMPLATE START -->
+                <div class="row roudned rounded-big post-size">
+                    <div id="postId-picture" class="col-6 img img-fluid">
+                        <div class="row">
+                            caption styling goes here
+                        </div>
+                    </div>
+                    <div class="col-6 ">
+                        <div class="row h-100 align-content-start">
+                            <div class="col-12 bg-primary text-white">
+                                username + title
+                            </div>
+                            <div class="col-12 bg-light">
+                                <div id="UNIQUE-POST-ID" class="row my-1 pl-4">
+                                    <!-- CAPTION TEMPLATE START -->
+                                    <div class="col-2  btn btn-outline-success"
+                                        onclick="app.postsController.upVoteCaption('postId,CaptionID')">up
+                                    </div>
+                                    <div class="col-8 d-flex align-self-center">the caption</div>
+                                    <div class="col-2  btn btn-outline-danger"
+                                        onclick="app.postsController.downVoteCaption('postId,CaptionID')">down
+                                    </div>
+
+
+                                    <!-- CAPTION TEMPLATE END -->
+                                </div>
+                            </div>
+                            <!-- Caption Button -->
+
+                            <div class="col-12 btn btn-primary btn-bottom text-center mt-auto" data-toggle="collapse"
+                                data-target="#post-id-collapse">
+                                caption it</div>
+
+                        </div>
+                    </div>
+                    <!--\/ CREATE A CAPTION SPACE \/ -->
+                    <div id="post-id-collapse" class="col-12 bg-secondary collapse">
+                        <div class="row">
+                            <div class="col-4 p-4"> <img src="https://scx2.b-cdn.net/gfx/news/2018/europeslostf.jpg"
+                                    alt="post image" class="img img-fluid"></div>
+                            <div class="col-8">
+                                <div class="row form-group justify-content-between py-3 px-5"
+                                    onsubmit="app.postsController.createCaption(event,'postId')">
+                                    <input name="new-caption" class="col-12 form-control my-3"
+                                        placeholder="enter you caption..."></input>
+                                    <div class="col-6">
+                                        <select id="inputState" name="style" class="form-control">
+                                            <option selected>Choose Style...</option>
+                                            <option>style one</option>
+                                            <option>style two</option>
+                                            <option>style three</option>
+                                        </select>
+                                    </div>
+                                    <button class="col-4 btn btn-warning" type="submit">Post</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /\ CREATE A CAPTION END /\ -->
+                </div>
+
+                <!-- POST TEMPLATE END -->
 
             </div>
-        </nav>
-    </header>
+            <div class="col-3">
+                <h2 class="m-0">USERNAME</h2>
+                <div class="row bg-secondary justify-content-around">
 
-    <main class="container-fluid">
-
-        <div id="posts" class="row"></div>
-
-        <div class="col-3">
-
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createPostModal">
+                        Create a post
+                    </button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createPostModal">
+                        show favorites
+                    </button>
+                </div>
+            </div>
         </div>
-
+        </div>
     </main>
 
 
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="app/main.js" type="module"></script>
 </body>
