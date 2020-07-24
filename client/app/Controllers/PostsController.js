@@ -17,4 +17,27 @@ export default class PostsController {
   constructor() {
     store.subscribe("posts", _drawPosts);
   }
+
+  createPost(event) {
+    event.preventDefault()
+    let rawPostData = {
+      username: event.target.username.value,
+      title: event.target.title.value,
+      imgUrl: event.target.imgUrl.value,
+      caption: event.target.caption.value
+    }
+    PostsService.createPost(rawPostData)
+
+    event.target.reset()
+  }
+
+  createCaption(event, postId) {
+    event.preventDefault()
+    let rawCaptionData = {
+      caption: event.target.caption.value,
+      style: event.target.style.value
+    }
+    PostsService.createCaption(rawCaptionData, postId)
+  event.target.reset()
+  }
 }

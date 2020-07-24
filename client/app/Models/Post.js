@@ -4,7 +4,7 @@ export default class Post {
         this.user = data.user
         this.title = data.title
         this.imgUrl = data.imgUrl
-        this.score = data.score
+        this.score = data.score || 0
         this.caption = data.caption || []
     }
 
@@ -30,7 +30,11 @@ export default class Post {
                     <ul class="list-group list-group-flush">
                         `
 
-        this.caption.forEach(c => template += `<li class="list-group-item">${c.caption}</li>`)
+        this.caption.forEach(c => template += `
+        
+        <li class="list-group-item">${c.caption}</li>
+        
+        `)
 
 
         template += /*html*/ `
@@ -43,5 +47,8 @@ export default class Post {
 
         return template
 
+    }
+
+    getCaptions() {
     }
 }
