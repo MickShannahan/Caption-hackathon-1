@@ -2,6 +2,7 @@ import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors";
 
 class PostsService {
+  
   async getAllPosts(query = {}) {
     return await dbContext.Posts.find(query)
   }
@@ -25,6 +26,13 @@ class PostsService {
       { $addToSet: { caption: body } },
       { new: true }
     );
+  }
+
+  async updateCaptionScore(postId, captionId, body) {
+    return await dbContext.Posts.updateOne(
+      {_id: postId, "caption._id": captionId}, 
+     {$set: { "caption.$.score": body.score } },
+      { new: true })
   }
   async deletePost(postId) {
     await dbContext.Posts.findByIdAndDelete(postId)

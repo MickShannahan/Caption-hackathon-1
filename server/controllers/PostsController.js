@@ -4,6 +4,7 @@ import { postsService } from "../services/PostsService";
 let _endpoint = "posts"
 
 export class PostsController extends BaseController {
+  
   constructor() {
     super("api/" + _endpoint)
     this.router
@@ -13,6 +14,7 @@ export class PostsController extends BaseController {
       .get("/:postId/captions/:captionId", this.getOneCaption)
       .post("", this.createPost)
       .post("/:postId/captions", this.createCaption)
+      .put("/:postId/captions/:captionId", this.updateCaptionScore)
       .delete("/:postId", this.deletePost)
 
   }
@@ -58,6 +60,15 @@ export class PostsController extends BaseController {
       next(error)
     }
   }
+
+  async updateCaptionScore(req, res, next) {
+    try {
+      res.send({ data: await postsService.updateCaptionScore(req.params.postId, req.params.captionId, req.body), message: "updated score" })
+    } catch (error) {
+      next(error)
+    }
+  }
+
   async deletePost(req, res, next) {
     try {
       await postsService.deletePost(req.params.postId)
