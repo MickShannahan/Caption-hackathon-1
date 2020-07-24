@@ -12,8 +12,8 @@ export default class Post {
         let template = /*html*/ `
 
         <div class="col-9">
-            <div className="row">
-                <div className="col-6 image">
+            <div class="row">
+                <div class="col-6 image">
         
                     <style>
                         .image {
@@ -24,13 +24,13 @@ export default class Post {
                     
                 </div>
 
-                <div className="col-6">
+                <div class="col-6">
                     <h3><span>${this.title}</span><span>${this.user}</span><h3>
                     <div class="card" style="width: 18rem;">
                     <ul class="list-group list-group-flush">
                         `
 
-        this.caption.forEach(c => template += `<li class="list-group-item">${this.caption[c].caption}</li>`)
+        this.caption.forEach(c => template += `<li class="list-group-item">${c.caption}</li>`)
 
 
         template += /*html*/ `
