@@ -30,4 +30,14 @@ export default class PostsController {
 
     event.target.reset()
   }
+
+  createCaption(event, postId) {
+    event.preventDefault()
+    let rawCaptionData = {
+      caption: event.target.caption.value,
+      style: event.target.style.value
+    }
+    PostsService.createCaption(rawCaptionData, postId)
+  event.target.reset()
+  }
 }

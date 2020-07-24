@@ -23,6 +23,12 @@ _postApi.post("posts/", rawPostData).then(res => {
 }).catch(err => console.error(err))
   }
 
+  createCaption(rawCaptionData, postId) {
+_postApi.post("posts/" + postId, rawCaptionData).then(res => {
+this.getPosts()
+}).catch(err => console.error(err))
+  }
+
   getPosts() {
     _postApi.get("posts").then(res => {
       console.log(res.data)
