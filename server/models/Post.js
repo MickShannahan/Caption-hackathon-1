@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const Caption = new Schema(
+const caption = new Schema(
   {
     caption: { type: String, required: true },
     style: { type: String, required: true },
@@ -16,7 +16,7 @@ const Post = new Schema(
     title: { type: String, required: true },
     imgUrl: { type: String, required: true },
     score: { type: Number, required: true },
-    captions: { Caption }
+    caption: [caption],
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );

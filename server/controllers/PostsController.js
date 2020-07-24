@@ -12,7 +12,7 @@ export class PostsController extends BaseController {
       .get("/:postId/captions", this.getAllCaptions)
       .get("/:postId/captions/:captionId", this.getOneCaption)
       .post("", this.createPost)
-      .put("/:postId/captions", this.createCaption)
+      .post("/:postId/captions", this.createCaption)
       .delete("/:postId", this.deletePost)
 
   }
