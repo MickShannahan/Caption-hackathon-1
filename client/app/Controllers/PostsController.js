@@ -45,4 +45,13 @@ export default class PostsController {
     PostsService.createCaption(rawCaptionData, postId)
     event.target.reset()
   }
+
+  upVoteCaption(postId, captionId) {
+    PostsService.upVoteCaption(postId, captionId)
+  }
+
+  downVoteCaption(postId, captionId) {
+    PostsService.downVoteCaption(postId, captionId)
+  }
+
 }

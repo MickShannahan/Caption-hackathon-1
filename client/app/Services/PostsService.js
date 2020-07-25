@@ -41,8 +41,12 @@ class PostsService {
     }).catch(err => console.error(err))
   }
 
-  upvoteCaption(captionId, postId) {
-    let updatedScore = store.State.posts.find(c => c.caption._id == captionId)
+  upVoteCaption(postId, captionId) {
+    let post = store.State.posts.find(p => p._id == postId)
+    if (!post) {
+      console.error("invalid post ID")
+    }
+    let updatedScore = post.caption.find(c => c._id == captionId)
     updatedScore.score++
     _postApi.put("posts/" + postId + "/captions/" + captionId, updatedScore).then(res => {
       console.log(res)
@@ -51,8 +55,12 @@ class PostsService {
 
   }
 
-  downvoteCaption(captionId, postId) {
-    let updatedScore = store.State.posts.find(c => c.caption._id == captionId)
+  downVoteCaption(postId, captionId) {
+    let post = store.State.posts.find(p => p._id == postId)
+    if (!post) {
+      console.error("invalid post ID")
+    }
+    let updatedScore = post.caption.find(c => c._id == captionId)
     updatedScore.score--
     _postApi.put("posts/" + postId + "/captions/" + captionId, updatedScore).then(res => {
       console.log(res)
