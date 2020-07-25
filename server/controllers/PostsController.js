@@ -4,7 +4,7 @@ import { postsService } from "../services/PostsService";
 let _endpoint = "posts"
 
 export class PostsController extends BaseController {
-  
+
   constructor() {
     super("api/" + _endpoint)
     this.router

@@ -5,17 +5,35 @@ export default class Post {
         this.title = data.title
         this.imgUrl = data.imgUrl
         this.score = data.score || 0
-        this.caption = data.caption || []
+        this.caption = data.caption.sort((a, b) => b.score - a.score) || []
     }
 
     get Template() {
 
+
+
+        // debugger
         let template = /*html*/`
     
-                <div class="row roudned rounded-big post-size my-3">
-                    <div id="${this._id}-picture" class="col-6 img img-fluid">
-                        <div class="row">
-                            caption styling goes here
+                <div class="row rounded rounded-big post-size my-3">
+                    <div id="picture-${this._id}" class="col-6 img-fluid">
+                        <style>
+                            #picture-${this._id} {
+                            background-image: url(${this.imgUrl});
+                            min-height: 100%;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            background-position: center;
+                         }
+                        </style>
+
+                        <div class="row text-white">`
+
+        if (this.caption[0]) {
+            template += `${this.caption[0].caption}`
+        }
+
+        template += /*html*/`   
                         </div>
                     </div>
                     <div class="col-6 ">
@@ -28,10 +46,10 @@ export default class Post {
                                 `
 
         this.caption.forEach(c => template += /*html*/`
-                                    <div class="col-2  btn btn-outline-success" onclick="app.postsController.upVoteCaption('${this._id}, ${c._id}')">up
+                                    <div class="col-2  btn btn-outline-success" onclick="app.postsController.upVoteCaption('${this._id}', '${c._id}')">up
                                     </div>
-                                    <div class="col-8 d-flex align-self-center">${c.caption}</div>
-                                    <div class="col-2  btn btn-outline-danger" onclick="app.postsController.downVoteCaption('${this._id}, ${c._id}')">down
+                                    <div class="col-8 d-flex align-self-center">${c.score} ${c.caption}</div>
+                                    <div class="col-2  btn btn-outline-danger" onclick="app.postsController.downVoteCaption('${this._id}', '${c._id}')">down
                                     </div>`
         )
 
@@ -50,7 +68,7 @@ export default class Post {
                     <!--\/ CREATE A CAPTION SPACE \/ -->
                     <div id="collapse-${this._id}" class="col-12 bg-secondary collapse">
                         <div class="row">
-                            <div class="col-4 p-4"> <img src="https://scx2.b-cdn.net/gfx/news/2018/europeslostf.jpg"
+                            <div class="col-4 p-4"> <img src="${this.imgUrl}"
                                     alt="post image" class="img img-fluid"></div>
                             <div class="col-8">
                                 <form onsubmit="app.postsController.createCaption(event,'${this._id}')">
