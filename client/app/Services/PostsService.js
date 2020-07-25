@@ -1,11 +1,10 @@
 import store from "../store.js";
 import Post from "../Models/Post.js"
-import { get } from "mongoose";
 
 
 // @ts-ignore
 const _postApi = axios.create({
-  baseURL: "http://localhost:3000/api/",
+  baseURL: "//localhost:3000/api",
   timeout: 3000
 })
 
@@ -18,7 +17,7 @@ class PostsService {
 
   
   createPost(rawPostData) {
-_postApi.post("posts/", rawPostData).then(res => {
+_postApi.post("posts/", new Post(rawPostData)).then(res => {
   this.getPosts()
 }).catch(err => console.error(err))
   }
