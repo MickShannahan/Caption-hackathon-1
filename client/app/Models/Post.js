@@ -5,12 +5,12 @@ export default class Post {
         this.title = data.title
         this.imgUrl = data.imgUrl
         this.score = data.score || 0
-        this.caption = data.caption.sort((a, b) => b.score - a.score) || []
+        this.caption = data.caption || []
     }
 
     get Template() {
 
-
+        let sortedArr = this.caption.sort((a, b) => b.score - a.score)
 
         // debugger
         let template = /*html*/`
@@ -45,7 +45,7 @@ export default class Post {
                                 <div id="${this._id}" class="row my-1 pl-4">
                                 `
 
-        this.caption.forEach(c => template += /*html*/`
+        sortedArr.forEach(c => template += /*html*/`
                                     <div class="col-2  btn btn-outline-success" onclick="app.postsController.upVoteCaption('${this._id}', '${c._id}')">up
                                     </div>
                                     <div class="col-8 d-flex align-self-center">${c.score} ${c.caption}</div>
