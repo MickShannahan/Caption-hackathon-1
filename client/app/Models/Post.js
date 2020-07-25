@@ -19,8 +19,8 @@ export default class Post {
         // debugger
         let template = /*html*/`
     
-                <div class="row rounded rounded-big post-size my-3">
-                    <div id="picture-${this._id}" class="col-6 img-fluid">
+                <div class="row rounded post-size post-shadow my-3 mr-1">
+                    <div id="picture-${this._id}" class="col-6 rounded-left border-left border-info img-fluid">
                         <style>
                             #picture-${this._id} {
                             background-image: url(${this.imgUrl});
@@ -31,7 +31,7 @@ export default class Post {
                          }
                         </style>
 
-                        <div class="row text-white text-center">`
+                        <div class="row text-dark text-center">`
 
         if (this.caption[0]) {
             template += `<div class=" ${this.caption[0].style}">${this.caption[0].caption}</div>`
@@ -40,20 +40,24 @@ export default class Post {
         template += /*html*/`   
                         </div>
                     </div>
-                    <div class="col-6 ">
+                    <div class="col-6 rounded-right ">
                         <div class="row h-100 align-content-start">
-                            <div class="col-12 bg-primary text-white">
+                            <div class="col-12 bg-primary text-dark">
                                 ${this.username} + ${this.title}
                             </div>
                             <div class="col-12 bg-light">
                                 <div id="${this._id}" class="row my-1 pl-4">
                                 `
 
-        sortedArr.forEach(c => template += /*html*/`
-                                    <div class="col-2  btn btn-outline-success" onclick="app.postsController.upVoteCaption('${this._id}', '${c._id}')">up
+        sortedArr.forEach((c, i) => template += /*html*/`
+                                    <div class="col-1 btn btn-outline-success p-1 " onclick="app.postsController.upVoteCaption('${this._id}', '${c._id}')"><i class="fa fa-level-up fa-flip-horizontal"></i>
+
+
                                     </div>
-                                    <div class="col-8 d-flex align-self-center">${c.score} ${c.caption}</div>
-                                    <div class="col-2  btn btn-outline-danger" onclick="app.postsController.downVoteCaption('${this._id}', '${c._id}')">down
+                                    <div class="col-10 d-flex align-self-center border-bottom color-${i}">${c.score} ${c.caption}</div>
+                                    <div class="col-1  btn btn-outline-danger p-1" onclick="app.postsController.downVoteCaption('${this._id}', '${c._id}')"><i class="fa fa-level-up fa-flip-vertical"></i>
+
+
                                     </div>`
         )
 
@@ -63,9 +67,9 @@ export default class Post {
                             </div>
                             <!-- Caption Button -->
 
-                            <div class="col-12 btn btn-primary btn-bottom text-center mt-auto" data-toggle="collapse"
+                            <div class="col-12 btn btn-primary btn-bottom d-flex align-self-center mt-auto" data-toggle="collapse"
                                 data-target="#collapse-${this._id}">
-                                caption it</div>
+                                caption it <i class="fa fa-plus-circle d-flex align-self-center pl-2"></i></div>
 
                         </div>
                     </div>
@@ -82,9 +86,9 @@ export default class Post {
                                     <div class="col-6">
                                         <select id="inputState" name="style" class="form-control">
                                             <option selected>Choose Style...</option>
-                                            <option>style one</option>
-                                            <option>style two</option>
-                                            <option>style three</option>
+                                            <option>blackNwhite</option>
+                                            <option>floridaMan</option>
+                                            <option>polaroid</option>
                                         </select>
                                     </div>
                                     <button class="col-4 btn btn-warning" type="submit">Post</button>
