@@ -40,22 +40,21 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group" onsubmit="app.postsController.createPost(event)">
-                            <input type="text" name="username" id="" class="form-control my-1"
+                        <form onsubmit="app.postsController.createPost(event)">
+                        <div class="form-group" >
+                            <input type="text" name="username" class="form-control my-1"
                                 placeholder="enter your name...">
-                            <input type="text" name="title" id="" class="form-control my-1"
+                            <input type="text" name="title" class="form-control my-1"
                                 placeholder="enter the title...">
-                            <input type="text" name="imgUrl" id="" class="form-control my-1"
+                            <input type="text" name="imgUrl" class="form-control my-1"
                                 placeholder="url of the image...">
-                            <input type="text" name="caption" id="" class="form-control my-1"
-                                placeholder="enter your caption...">
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">POST IT!</button>
+                            </div>
                         </div>
+                    </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">POST IT!</button>
-                    </div>
-                </div>
             </div>
         </div>
     </header>

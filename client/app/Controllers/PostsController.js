@@ -20,11 +20,11 @@ export default class PostsController {
 
   createPost(event) {
     event.preventDefault()
+    debugger;
     let rawPostData = {
       username: event.target.username.value,
       title: event.target.title.value,
       imgUrl: event.target.imgUrl.value,
-      caption: event.target.caption.value
     }
     PostsService.createPost(rawPostData)
 
