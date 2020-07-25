@@ -5,17 +5,17 @@ const caption = new Schema(
   {
     caption: { type: String, required: true },
     style: { type: String, required: true },
-    score: { type: Number, required: true, default: 0}
+    score: { type: Number, required: true, default: 0 }
   }
 
 )
 
 const Post = new Schema(
   {
-    user: { type: String, required: true },
+    username: { type: String, required: true },
     title: { type: String, required: true },
     imgUrl: { type: String, required: true },
-    score: { type: Number, required: true, default: 0},
+    score: { type: Number, required: true, default: 0 },
     caption: [caption],
   },
   { timestamps: true, toJSON: { virtuals: true } }

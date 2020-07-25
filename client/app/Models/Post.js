@@ -1,7 +1,7 @@
 export default class Post {
     constructor(data) {
         this._id = data._id
-        this.user = data.user
+        this.username = data.username
         this.title = data.title
         this.imgUrl = data.imgUrl
         this.score = data.score || 0
@@ -21,7 +21,7 @@ export default class Post {
                     <div class="col-6 ">
                         <div class="row h-100 align-content-start">
                             <div class="col-12 bg-primary text-white">
-                                username + title
+                                ${this.username} + ${this.title}
                             </div>
                             <div class="col-12 bg-light">
                                 <div id="${this._id}" class="row my-1 pl-4">
@@ -42,19 +42,19 @@ export default class Post {
                             <!-- Caption Button -->
 
                             <div class="col-12 btn btn-primary btn-bottom text-center mt-auto" data-toggle="collapse"
-                                data-target="${this._id}-collapse">
+                                data-target="#collapse-${this._id}">
                                 caption it</div>
 
                         </div>
                     </div>
                     <!--\/ CREATE A CAPTION SPACE \/ -->
-                    <div id="${this._id}-collapse" class="col-12 bg-secondary collapse">
+                    <div id="collapse-${this._id}" class="col-12 bg-secondary collapse">
                         <div class="row">
                             <div class="col-4 p-4"> <img src="https://scx2.b-cdn.net/gfx/news/2018/europeslostf.jpg"
                                     alt="post image" class="img img-fluid"></div>
                             <div class="col-8">
-                                <div class="row form-group justify-content-between py-3 px-5"
-                                    onsubmit="app.postsController.createCaption(event,'${this._id}')">
+                                <form onsubmit="app.postsController.createCaption(event,'${this._id}')">
+                                <div class="row form-group justify-content-between py-3 px-5">
                                     <input name="caption" class="col-12 form-control my-3"
                                         placeholder="enter you caption...">
                                     <div class="col-6">
@@ -68,6 +68,7 @@ export default class Post {
                                     <button class="col-4 btn btn-warning" type="submit">Post</button>
 
                                 </div>
+                                </form> 
                             </div>
                         </div>
                     </div>

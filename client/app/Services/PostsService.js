@@ -15,17 +15,17 @@ class PostsService {
 
   }
 
-  
+
   createPost(rawPostData) {
-_postApi.post("posts/", new Post(rawPostData)).then(res => {
-  this.getPosts()
-}).catch(err => console.error(err))
+    _postApi.post("posts/", new Post(rawPostData)).then(res => {
+      this.getPosts()
+    }).catch(err => console.error(err))
   }
 
   createCaption(rawCaptionData, postId) {
-_postApi.post("posts/" + postId + "/captions", rawCaptionData).then(res => {
-this.getPosts()
-}).catch(err => console.error(err))
+    _postApi.post("posts/" + postId + "/captions", rawCaptionData).then(res => {
+      this.getPosts()
+    }).catch(err => console.error(err))
   }
 
   getPosts() {
@@ -60,7 +60,7 @@ this.getPosts()
     })
 
   }
-  
+
 
 
 

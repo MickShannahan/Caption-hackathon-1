@@ -10,6 +10,8 @@ function _drawPosts() {
 
 
 
+
+
 }
 
 //Public
@@ -18,9 +20,12 @@ export default class PostsController {
     store.subscribe("posts", _drawPosts);
   }
 
+  // toggleCollapse(target) {
+  //   $(target).collapse("toggle")
+  // }
+
   createPost(event) {
     event.preventDefault()
-    debugger;
     let rawPostData = {
       username: event.target.username.value,
       title: event.target.title.value,
