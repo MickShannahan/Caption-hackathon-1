@@ -128,8 +128,9 @@
             </div>
 
             <div class="col-3">
-                <form class="input-group">
-                    <input type="text" class="form-control" id="enterUserName" placeholder="Enter User Name...">
+                <form class="input-group" onsubmit="app.postsController.addUser(event)">
+                    <input type="text" class="form-control" id="enterUserName" name="username"
+                        placeholder="Enter User Name...">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                     </div>
