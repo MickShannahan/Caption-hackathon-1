@@ -1,6 +1,6 @@
 import PostsService from "../Services/PostsService.js";
 import store from "../store.js";
-import Post from "../Models/Post.js";
+
 
 //Private
 function _drawPosts() {
@@ -38,6 +38,6 @@ export default class PostsController {
       style: event.target.style.value
     }
     PostsService.createCaption(rawCaptionData, postId)
-  event.target.reset()
+    event.target.reset()
   }
 }
