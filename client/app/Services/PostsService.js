@@ -49,18 +49,20 @@ class PostsService {
     let post = store.State.posts.find(p => p._id == postId)
     if (!post) {
       console.error("invalid post ID")
-    } debugger
+    }
 
     let updatedScore = post.caption.find(c => c._id == captionId)
-    if (updatedScore && store.State.user.captionsVoted.find(c => c == updatedScore)) {
-
-
-      updatedScore.score++
-      store.State.user.captionsVoted.push(captionId)
-      _postApi.put("posts/" + postId + "/captions/" + captionId, updatedScore).then(res => {
-        console.log(res)
-        this.getPosts()
-      })
+    if (updatedScore) {
+      let userVote = store.State.user.captionsVoted.find(c => c == captionId)
+      if (userVote != updatedScore._id) {
+        updatedScore.score++
+        store.State.user.captionsVoted.push(captionId)
+        _postApi.put("posts/" + postId + "/captions/" + captionId, updatedScore).then(res => {
+          console.log(res)
+          this.getPosts()
+          store.saveState()
+        })
+      }
     }
   }
 
@@ -71,14 +73,17 @@ class PostsService {
     if (!post) {
       console.error("invalid post ID")
     }
-    if (store.State.user.captionsVoted.find(c => c._id == captionId) == undefined) {
-      let updatedScore = post.caption.find(c => c._id == captionId)
-      updatedScore.score--
-      store.State.user.captionsVoted.push(captionId)
-      _postApi.put("posts/" + postId + "/captions/" + captionId, updatedScore).then(res => {
-        console.log(res)
-        this.getPosts()
-      })
+    let updatedScore = post.caption.find(c => c._id == captionId)
+    if (updatedScore) {
+      let userVote = store.State.user.captionsVoted.find(c => c == captionId)
+      if (userVote != updatedScore._id) {
+        updatedScore.score--
+        store.State.user.captionsVoted.push(captionId)
+        _postApi.put("posts/" + postId + "/captions/" + captionId, updatedScore).then(res => {
+          console.log(res)
+          this.getPosts()
+        })
+      }
     }
   }
 
