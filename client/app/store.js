@@ -1,16 +1,26 @@
 import Post from "./Models/Post.js";
+import User from "./Models/User.js";
 
 let _state = {
-  posts: []
+  posts: [],
+  user: []
 };
 
 /** Collection of listeners to be called based on keyed state changes
  * @type {{[x:string]: function[]}}
  */
 let _listeners = {
-  posts: []
+  posts: [],
+  user: []
 };
 
+function _loadState() {
+  let data = JSON.parse(localStorage.getItem("thisCaption"));
+  if (data) {
+    data.user = data.user.map(user => new User(user));
+    _state.user = data;
+  }
+}
 //NOTE You should not need to change the code from this point down
 
 /**
@@ -37,6 +47,9 @@ function _validateSubscriber(fn, prop) {
 }
 
 class Store {
+  constructor() {
+    _loadState()
+  }
   /**
    * Provides access to application state data
    */
@@ -64,7 +77,13 @@ class Store {
     _state[prop] = data;
     _listeners[prop].forEach(fn => fn());
   }
+
+  saveState() {
+    localStorage.setItem("thisCaption", JSON.stringify(_state.user));
+  }
+
 }
+
 
 const store = new Store();
 export default store;
