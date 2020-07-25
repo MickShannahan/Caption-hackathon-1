@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const caption = new Schema(
   {
     caption: { type: String, required: true },
-    style: { type: String, required: true },
+    style: { type: String, required: true, default: 'blackNwhite' },
     score: { type: Number, required: true, default: 0 }
   }
 

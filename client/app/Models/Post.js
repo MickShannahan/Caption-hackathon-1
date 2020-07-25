@@ -1,3 +1,7 @@
+let styleOne = 'blackNwhite'
+
+
+
 export default class Post {
     constructor(data) {
         this._id = data._id
@@ -27,10 +31,10 @@ export default class Post {
                          }
                         </style>
 
-                        <div class="row text-white">`
+                        <div class="row text-white text-center">`
 
         if (this.caption[0]) {
-            template += `${this.caption[0].caption}`
+            template += `<div class=" ${this.caption[0].style}">${this.caption[0].caption}</div>`
         }
 
         template += /*html*/`   
