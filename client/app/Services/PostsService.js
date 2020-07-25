@@ -17,7 +17,9 @@ class PostsService {
   }
 
   addUser(rawUser) {
-    store.commit('user', new User(rawUser))
+    if (rawUser.username != store.State.user.username) {
+      store.commit('user', new User(rawUser))
+    }
   }
 
   createPost(rawPostData) {

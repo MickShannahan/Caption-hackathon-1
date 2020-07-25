@@ -18,8 +18,8 @@ let _listeners = {
 function _loadState() {
   let data = JSON.parse(localStorage.getItem("thisCaption"));
   if (data) {
-    data.user = data.user.map(user => new User(user));
-    _state.user = data;
+
+    _state.user = new User(data);
   }
 }
 //NOTE You should not need to change the code from this point down
