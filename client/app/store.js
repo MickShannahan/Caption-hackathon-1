@@ -3,7 +3,8 @@ import User from "./Models/User.js";
 
 let _state = {
   posts: [],
-  user: []
+  /** @type {User} */
+  user: null
 };
 
 /** Collection of listeners to be called based on keyed state changes

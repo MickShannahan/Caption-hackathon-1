@@ -1,5 +1,6 @@
 import store from "../store.js";
 import Post from "../Models/Post.js"
+import User from "../Models/User.js";
 
 
 // @ts-ignore
@@ -15,6 +16,9 @@ class PostsService {
 
   }
 
+  addUser(rawUser) {
+    store.commit('user', new User(rawUser))
+  }
 
   createPost(rawPostData) {
     _postApi.post("posts/", new Post(rawPostData)).then(res => {
@@ -46,13 +50,14 @@ class PostsService {
     if (!post) {
       console.error("invalid post ID")
     }
-    let updatedScore = post.caption.find(c => c._id == captionId)
-    updatedScore.score++
-    _postApi.put("posts/" + postId + "/captions/" + captionId, updatedScore).then(res => {
-      console.log(res)
-      this.getPosts()
-    })
-
+    if (store.State.user.captionsVoted.find(c => c._id == captionId) == undefined) {
+      let updatedScore = post.caption.find(c => c._id == captionId)
+      updatedScore.score++
+      _postApi.put("posts/" + postId + "/captions/" + captionId, updatedScore).then(res => {
+        console.log(res)
+        this.getPosts()
+      })
+    }
   }
 
   downVoteCaption(postId, captionId) {
@@ -60,13 +65,14 @@ class PostsService {
     if (!post) {
       console.error("invalid post ID")
     }
-    let updatedScore = post.caption.find(c => c._id == captionId)
-    updatedScore.score--
-    _postApi.put("posts/" + postId + "/captions/" + captionId, updatedScore).then(res => {
-      console.log(res)
-      this.getPosts()
-    })
-
+    if (store.State.user.captionsVoted.find(c => c._id == captionId) == undefined) {
+      let updatedScore = post.caption.find(c => c._id == captionId)
+      updatedScore.score--
+      _postApi.put("posts/" + postId + "/captions/" + captionId, updatedScore).then(res => {
+        console.log(res)
+        this.getPosts()
+      })
+    }
   }
 
 

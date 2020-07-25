@@ -23,7 +23,13 @@ export default class PostsController {
   // toggleCollapse(target) {
   //   $(target).collapse("toggle")
   // }
-
+  addUser(event) {
+    event.preventDefault()
+    let rawUser = {
+      username: event.target.username.value
+    }
+    PostsService.addUser(rawUser)
+  }
   createPost(event) {
     event.preventDefault()
     let rawPostData = {
