@@ -19,3 +19,11 @@
   text-shadow: 1px 1px #eb47cf;
   color: #eee;
 }
+
+[data-theme="dark"] .bg-primary{
+  background-color: #c5ec36 !important;
+}
+
+[data-theme="dark"] .btn-primary{
+  background-color: #c5ec36 !important;
+}
