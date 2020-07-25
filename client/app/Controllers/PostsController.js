@@ -7,11 +7,7 @@ function _drawPosts() {
   let template = ""
   store.State.posts.forEach(p => template += p.Template)
   document.getElementById("posts").innerHTML = template
-
-
-
-
-
+  document.getElementById("enterUserName").setAttribute("value", store.State.user.username)
 }
 
 //Public
