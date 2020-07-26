@@ -50,11 +50,11 @@ export default class Post {
                                 `
 
         sortedArr.forEach((c, i) => template += /*html*/`
-                                    <div class="col-1 btn btn-outline-success p-1 text-dark" onclick="app.postsController.upVoteCaption('${this._id}', '${c._id}')"><i class="fa fa-level-up fa-flip-horizontal"></i>
+                                    <div class="col-1 btn btn-outline-success p-1" onclick="app.postsController.upVoteCaption('${this._id}', '${c._id}')"><i class="fa fa-level-up fa-flip-horizontal"></i>
 
 
                                     </div>
-                                    <div class="col-10 d-flex align-self-center border-bottom color-${i}">${c.score} ${c.caption}</div>
+                                    <div class="col-10 d-flex align-self-center border-bottom color-${i} text-dark">${c.score} ${c.caption}</div>
                                     <div class="col-1  btn btn-outline-danger p-1" onclick="app.postsController.downVoteCaption('${this._id}', '${c._id}')"><i class="fa fa-level-up fa-flip-vertical"></i>
 
 
