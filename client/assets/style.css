@@ -6,6 +6,7 @@ body {
 
 .cross-bg{
     background-image: url("backgroundyellow.png");
+    background-size: 50vh;
     background-position: bottom;
     background-repeat: repeat-x;
 }
