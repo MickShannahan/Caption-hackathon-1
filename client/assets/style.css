@@ -1,5 +1,7 @@
 body {
-    background-image: url("app/assests/backgroundyellow.png");
+    background-image: url("backgroundyellow.png");
+    background-position: bottom;
+    background-repeat: repeat-x;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
