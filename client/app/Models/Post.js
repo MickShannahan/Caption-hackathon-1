@@ -19,7 +19,7 @@ export default class Post {
         // debugger
         let template = /*html*/`
     
-                <div class="row rounded post-size post-shadow my-3 mr-1">
+                <div class="row rounded post-size post-shadow my-3 mr-1 text-dark">
                     <div id="picture-${this._id}" class="col-6 rounded-left border-left border-info img-fluid">
                         <style>
                             #picture-${this._id} {
