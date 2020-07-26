@@ -17,6 +17,7 @@ class PostsService {
   }
 
   addUser(rawUser) {
+    debugger
     if (rawUser.username != store.State.user.username) {
       store.commit('user', new User(rawUser))
     }

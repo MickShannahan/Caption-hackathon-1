@@ -18,7 +18,6 @@ let _listeners = {
 function _loadState() {
   let data = JSON.parse(localStorage.getItem("thisCaption"));
   if (data) {
-
     _state.user = new User(data);
   }
 }
