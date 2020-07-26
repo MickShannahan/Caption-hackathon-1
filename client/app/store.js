@@ -4,7 +4,7 @@ import User from "./Models/User.js";
 let _state = {
   posts: [],
   /** @type {User} */
-  user: "Enter a User"
+  user: {username: "Enter Username"}
 };
 
 /** Collection of listeners to be called based on keyed state changes
