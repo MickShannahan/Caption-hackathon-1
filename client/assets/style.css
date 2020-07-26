@@ -1,12 +1,14 @@
 body {
-    background-image: url("backgroundyellow.png");
-    background-position: bottom;
-    background-repeat: repeat-x;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
+.cross-bg{
+    background-image: url("backgroundyellow.png");
+    background-position: bottom;
+    background-repeat: repeat-x;
+}
 
 #pro-background{
     margin-left: 0;
