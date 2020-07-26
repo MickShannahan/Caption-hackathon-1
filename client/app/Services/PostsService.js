@@ -5,7 +5,7 @@ import User from "../Models/User.js";
 
 // @ts-ignore
 const _postApi = axios.create({
-  baseURL: "//localhost:3000/api",
+  baseURL: "//https://thiscaption.herokuapp.com/api",
   timeout: 3000
 })
 
