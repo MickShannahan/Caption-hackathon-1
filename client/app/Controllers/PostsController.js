@@ -19,6 +19,10 @@ export default class PostsController {
   // toggleCollapse(target) {
   //   $(target).collapse("toggle")
   // }
+
+  windowError() {
+    window.alert("OOPS, that function is still in beta")
+  }
   addUser(event) {
     event.preventDefault()
     let rawUser = {
